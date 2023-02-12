@@ -5,7 +5,7 @@ function Navbar(props) {
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="!#">My Shopping</a>
+                    <a class="navbar-brand" href="/items">My Shopping</a>
                     <button
                     class="navbar-toggler"
                     type="button"
@@ -21,10 +21,10 @@ function Navbar(props) {
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex input-group w-auto">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="!#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="items">Home</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active" href="#!">Cart</a>
+                        <a class="nav-link active" href="cart">Cart</a>
                         </li>
                     </ul>
                     </div>
