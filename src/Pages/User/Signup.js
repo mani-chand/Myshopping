@@ -1,6 +1,37 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Navbar from '../../Components/Navbar';
+import Welcome  from './../../Images/Welcome.gif';
+import axios from 'axios';
 function Signup(props) {
+    const [user,setUser] = useState({
+        uname:"",
+        email:"",
+        password:"",
+        repeatPassword:"",
+    })
+    const handleSubmit = async() =>{
+        try {
+            if(user.uname!=="" && user.password!=="" &&
+                user.email!=="" && user.repeatPassword!==""){
+                if(user.password===user.repeatPassword){
+                    const res = await axios.post('http://localhost:5000/newUser', user);
+                    if(res.data.code===200){
+                        window.location.replace('/')
+                    }
+                    else{
+                        alert(res.data)
+                    }
+                }
+                else{
+                    alert("password should be same as confirm password")
+                }
+            }
+            else{
+                alert("Everything should be filled")
+            }
+        setUser({uname:"",email:"",password:"",repeatPassword:"",})
+        }catch(error){}
+    }
     return (
         <div>
             <Navbar/>
@@ -21,7 +52,13 @@ function Signup(props) {
                                         <div className="d-flex flex-row align-items-center mb-4">
                                             <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div className="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example1c" className="form-control" />
+                                            <input
+                                            type="text"
+                                            id="form3Example1c"
+                                            name='uname'
+                                            className="form-control uname"
+                                            value = {user.uname}
+                                            onChange={(e)=>{setUser({...user,[e.target.name]:e.target.value})}}/>
                                             <label className="form-label" for="form3Example1c">Your Name</label>
                                         </div>
                                     </div>
@@ -29,7 +66,14 @@ function Signup(props) {
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div className="form-outline flex-fill mb-0">
-                                        <input type="email" id="form3Example3c" className="form-control" />
+                                        <input
+                                        name="email"
+                                        value = {user.email}
+                                        type="email"
+                                        id="form3Example3c"
+                                        className="form-control email"
+                                        onChange={(e)=>{setUser({...user,[e.target.name]:e.target.value})}}
+                                        />
                                         <label className="form-label" for="form3Example3c">Your Email</label>
                                         </div>
                                     </div>
@@ -37,7 +81,13 @@ function Signup(props) {
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div className="form-outline flex-fill mb-0">
-                                        <input type="password" id="form3Example4c" className="form-control" />
+                                        <input type="password"
+                                        name = "password"
+                                        value = {user.password}
+                                        id="form3Example4c" 
+                                        className="form-control passwd" 
+                                        onChange={(e)=>{setUser({...user,[e.target.name]:e.target.value})}}
+                                        />
                                         <label className="form-label" for="form3Example4c">Password</label>
                                         </div>
                                     </div>
@@ -45,7 +95,12 @@ function Signup(props) {
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div className="form-outline flex-fill mb-0">
-                                        <input type="password" id="form3Example4cd" className="form-control" />
+                                        <input type="password"
+                                        name = "repeatPassword"
+                                        onChange={(e)=>{setUser({...user,[e.target.name]:e.target.value})}}
+                                        value={user.repeatPassword}
+                                        id="form3Example4cd"
+                                        className="form-control rPasswd" />
                                         <label className="form-label" for="form3Example4cd">Repeat your password</label>
                                         </div>
                                     </div>
@@ -58,15 +113,16 @@ function Signup(props) {
                                     </div>
 
                                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" className="btn btn-primary btn-lg">Register</button>
+                                        <button type="submit" className="btn btn-primary btn-lg" onClick={handleSubmit}>Register</button>
                                     </div>
+                                        <a style={{display:"flex", justifyContent:"center"}} href="/" className="m-2 4">Already have an account</a>
 
                                 </div>
 
                             </div>
                                 <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" className="img-fluid" alt="sampleImage"/>
+                                <img src={Welcome} className="img-fluid" alt="sampleImage"/>
                                 </div>
                                 </div>
                         </div>

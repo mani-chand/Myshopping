@@ -33,25 +33,25 @@ function Cart(props) {
         <div>
             <Navbar/>
             <div>
-                <h1 className='mb-3'>Shopping Cart</h1>
+                <h1 className='mb-3' style={{display:"flex",justifyContent:"center"}}>Shopping Cart</h1>
             </div>
             <div>
-            <header class="mb-10">
-                <section class="">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-8">
+            <header className="mb-10">
+                <section className="">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-8">
                                 {items.map((item,index)=>{
                                     return (
                                         <div class="row row-cols-2 g-3">
-                                <div class="col">
-                                    <div class="card mb-3" style={{maxWidth: "540px"}}>
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
+                                <div className="col">
+                                    <div className="card mb-3" style={{maxWidth: "540px"}}>
+                                    <div className="row g-0">
+                                        <div className="col-md-4">
                                         <img
                                             src={item.Image}
                                             alt="Trendy Pants and Shoes"
-                                            class="img-fluid rounded-start"
+                                            className="img-fluid rounded-start"
                                         />
                                         </div>
                                         <div className="col-md-8">
@@ -78,8 +78,8 @@ function Cart(props) {
     <div class="col">
   <div class="card-body">
     <h3 class="card-title">Price Details</h3>
-    <h6 class="card-text">price of {items.length} items = {total}</h6>
-    <button type="button" class="btn btn-primary" onClick={()=>{window.location.replace('/');
+    <h6 class="card-text Lead">Price of {items.length} items = {total}</h6>
+    <button type="button" class="btn btn-primary" onClick={()=>{window.location.replace('/checkout');
 }}>Checkout</button>
   </div>
   </div>
